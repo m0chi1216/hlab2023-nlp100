@@ -24,8 +24,8 @@ for i in range(len(find2)):
 
 url=dictlist['国旗画像']
 url=url.replace(' ','_')
-wikiurl='https://commons.wikimedia.org/w/api.php?action=query&titles=File:' + url + '&prop=imageinfo&iiprop=url&format=json'
-#wikiurl='https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&titles=File:'+url
+#wikiurl='https://commons.wikimedia.org/w/api.php?action=query&titles=File:' + url + '&prop=imageinfo&iiprop=url&format=json'
+wikiurl='https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url&titles=File:'+url
 data = requests.get(wikiurl)
 #print(data.text)
 ans = re.search(r'"url":"(.+?)"', data.text).group(1)

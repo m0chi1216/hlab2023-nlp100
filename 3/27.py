@@ -9,7 +9,7 @@ with open('jawiki-country.json') as f:
 
 pattern = r'^\{\{基礎情報.*?$(.*)^\}\}'
 find = re.findall(pattern,text,re.MULTILINE+ re.DOTALL)
-pattern = r'^\|(.*?)\s*=(.*?)$'
+pattern = r'^\|(.*?)\s*= (.*?)$'
 find2 = re.findall(pattern,find[0],re.MULTILINE)
 
 dictlist={}
