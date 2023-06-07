@@ -4,15 +4,22 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 
+
+label={'b':0,'e':1,'t':2,'m':3}
+
 def processing(data):
     x=[]
     y=[]
-    label={'b':0,'e':1,'t':2,'m':3}
     for title,categoly in data:
         title=re.sub('[0-9]+','0',title)
         x.append(title.lower())
         y.append(label[categoly])
     return x,y
+
+def pre_score(lg,X):
+    pre=lg.predict([X])
+    pre_prob=lg.predict_proba([X])[0,pre]
+    return pre[0],pre_prob[0]
 
 # データの読込
 df=pd.read_csv('NewsAggregatorDataset/newsCorpora.csv', header=None, sep='\t', names=['ID', 'TITLE', 'URL', 'PUBLISHER', 'CATEGORY', 'STORY', 'HOSTNAME', 'TIMESTAMP'])
@@ -34,21 +41,45 @@ x_train, y_train = processing(train)
 x_valid, y_valid = processing(valid)
 x_test , y_test  = processing(test)
 
-tfidf=TfidfVectorizer(min_df=0.01)
+#print(train)
+#a=np.array([[1,2],[3,4]])
+#print(a)
 
+tfidf=TfidfVectorizer(min_df=10)
 tfidf.fit(x_train)
 x_train = tfidf.transform(x_train).toarray()
 x_valid = tfidf.transform(x_valid).toarray()
 x_test = tfidf.transform(x_test).toarray()
-
-x_train = pd.DataFrame(x_train.toarray(),columns=tfidf.get_feature_names_out())
-x_valid = pd.DataFrame(x_valid.toarray(),columns=tfidf.get_feature_names_out())
-x_test = pd.DataFrame(x_test.toarray(),columns=tfidf.get_feature_names_out())
-
 #fitでidf,transformでtf
+
 from sklearn.linear_model import LogisticRegression
 
 # モデルの学習
 lg = LogisticRegression(random_state=100, max_iter=200)
 lg.fit(x_train,y_train)
-print(x_train)
+
+from sklearn.metrics import accuracy_score
+pre_train =[]
+pre_test=[]
+
+for i in x_train:
+    pre_train.append(lg.predict([i]))
+for i in x_test:
+    pre_test.append(lg.predict([i]))
+
+'''
+train_accuracy = accuracy_score(y_train,pre_train)
+test_accuracy = accuracy_score(y_test,pre_test)
+print(f'正解率（学習データ）：{train_accuracy:.3f}')
+print(f'正解率（評価データ）：{test_accuracy:.3f}')
+'''
+
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+train_matrix=confusion_matrix(y_train,pre_train)
+print(train_matrix)
+print(type(train_matrix))
+sns.heatmap(train_matrix, annot=True, cmap='Blues')
+plt.show()

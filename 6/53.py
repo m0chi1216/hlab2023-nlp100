@@ -52,12 +52,18 @@ x_valid = tfidf.transform(x_valid).toarray()
 x_test = tfidf.transform(x_test).toarray()
 #fitでidf,transformでtf
 
+x_train = pd.DataFrame(x_train,columns=tfidf.get_feature_names_out())
+x_valid = pd.DataFrame(x_valid,columns=tfidf.get_feature_names_out())
+x_test = pd.DataFrame(x_test,columns=tfidf.get_feature_names_out())
+
+print(x_train[1])
+
 from sklearn.linear_model import LogisticRegression
 
 # モデルの学習
 lg = LogisticRegression(random_state=100, max_iter=200)
 lg.fit(x_train,y_train)
 
-print(pre_score(lg,x_test[0]))
+print(pre_score(lg,x_test[1]))
 #print(tfidf.get_feature_names_out())
 #x_train = pd.DataFrame(x_train,columns=tfidf.get_feature_names_out())

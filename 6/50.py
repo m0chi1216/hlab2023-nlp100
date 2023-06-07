@@ -19,7 +19,6 @@ print(''.join(datalist))
 # データの読込
 df=pd.read_csv('NewsAggregatorDataset/newsCorpora.csv', header=None, sep='\t', names=['ID', 'TITLE', 'URL', 'PUBLISHER', 'CATEGORY', 'STORY', 'HOSTNAME', 'TIMESTAMP'])
 #df[df['PUBLISHER']  == 'Reuters']
-
 df = df[df['PUBLISHER'].isin(['Reuters', 'Huffington Post', 'Businessweek', 'Contactmusic.com', 'Daily Mail'])]
 df = df[['TITLE','CATEGORY']]
 
