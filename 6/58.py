@@ -90,7 +90,8 @@ pre_valid=[]
 pre_test=[]
 
 result=[]
-for c in np.logspace(-5,4,10,base=10):
+from tqdm import tqdm
+for c in tqdm(np.logspace(-5,4,10,base=10)):
     lg = LogisticRegression(C=c, max_iter=200)
     lg.fit(x_train,y_train)
     
@@ -113,6 +114,7 @@ for c in np.logspace(-5,4,10,base=10):
     result.append([c,train_accuracy,valid_accuracy,test_accuracy])
 #c=10あたりからなんかエラーでる(STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.)
 #原因はlogistic回帰モデルのmax_iterにある，これを増やせば時間かかるけどなんとかなる
+#なんで途中で打ち切られてるのに値は変化していく？
 result = np.array(result).T
 plt.plot(result[0], result[1], label='train')
 plt.plot(result[0], result[2], label='valid')

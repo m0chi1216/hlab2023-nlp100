@@ -52,10 +52,6 @@ x_valid = tfidf.transform(x_valid).toarray()
 x_test = tfidf.transform(x_test).toarray()
 #fitでidf,transformでtf
 
-x_train = pd.DataFrame(x_train,columns=tfidf.get_feature_names_out())
-x_valid = pd.DataFrame(x_valid,columns=tfidf.get_feature_names_out())
-x_test = pd.DataFrame(x_test,columns=tfidf.get_feature_names_out())
-
 print(x_train[1])
 
 from sklearn.linear_model import LogisticRegression

@@ -1,0 +1,5 @@
+git add .​
+
+git commit –m “コミットメッセージ”​
+
+git push origin [自分の名字]

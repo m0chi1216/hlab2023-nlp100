@@ -16,7 +16,7 @@ def processing(data):
         x.append(title.lower())
         y.append(label[categoly])
     return x,y
-
+#prcessingは
 # データの読込
 df=pd.read_csv('NewsAggregatorDataset/newsCorpora.csv', header=None, sep='\t', names=['ID', 'TITLE', 'URL', 'PUBLISHER', 'CATEGORY', 'STORY', 'HOSTNAME', 'TIMESTAMP'])
 
@@ -41,8 +41,7 @@ x_test , y_test  = processing(test)
 #a=np.array([[1,2],[3,4]])
 #print(a)
 
-#うまくいかないやつ
-tfidf=TfidfVectorizer(min_df=10)
+tfidf=TfidfVectorizer(min_df=0.01)
 
 tfidf.fit(x_train)
 x_train = tfidf.transform(x_train)
@@ -68,7 +67,6 @@ x_test = pd.DataFrame(x_test.toarray(),columns=tfidf.get_feature_names_out())
 x_train.to_csv('./X_train.txt', sep='\t', index=False)
 x_valid.to_csv('./X_valid.txt', sep='\t', index=False)
 x_test.to_csv('./X_test.txt', sep='\t', index=False)
-print('complete')
 
 #print(tfidf.get_feature_names_out())
 #x_train = pd.DataFrame(x_train,columns=tfidf.get_feature_names_out())
