@@ -41,9 +41,9 @@ x_train = tfidf.transform(x_train).toarray()
 x_valid = tfidf.transform(x_valid).toarray()
 x_test = tfidf.transform(x_test).toarray()
 
-x_train = pd.DataFrame(x_train.toarray(),columns=tfidf.get_feature_names_out())
-x_valid = pd.DataFrame(x_valid.toarray(),columns=tfidf.get_feature_names_out())
-x_test = pd.DataFrame(x_test.toarray(),columns=tfidf.get_feature_names_out())
+x_train = pd.DataFrame(x_train,columns=tfidf.get_feature_names_out())
+x_valid = pd.DataFrame(x_valid,columns=tfidf.get_feature_names_out())
+x_test = pd.DataFrame(x_test,columns=tfidf.get_feature_names_out())
 
 #fitでidf,transformでtf
 from sklearn.linear_model import LogisticRegression

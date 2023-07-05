@@ -19,13 +19,11 @@ kmeans.fit(countries_vec)
 clusters = kmeans.predict(countries_vec)
 
 group = dict(zip(countries,clusters))
-
 group0 = []
 group1 = []
 group2 = []
 group3 = []
 group4 = []
-
 for i in countries:
   matchword = group[i]
   match matchword:

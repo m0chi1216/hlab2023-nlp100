@@ -5,3 +5,7 @@ git commit –m “コミットメッセージ”​
 git push origin [自分の名字]
 
 git reset --soft HEAD^
+
+けらす(keref)
+vえんぶ
+miniconda

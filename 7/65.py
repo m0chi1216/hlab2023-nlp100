@@ -11,7 +11,7 @@ with open('./questions-words-add.txt', 'r') as f:
         sem_cor += 1
 
 #question-words-addにカテゴリ名を含んでいなかったので計算できず 
-#question-words-addは時間かかるので今回は飛ばす
+#question-words-addを出力し直すのは時間かかるので今回は飛ばす
 
 print(f'意味的アナロジー正解率: {sem_cor/sem_cnt:.3f}')
 #print(f'文法的アナロジー正解率: {syn_cor/syn_cnt:.3f}') 

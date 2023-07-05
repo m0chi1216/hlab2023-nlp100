@@ -18,6 +18,8 @@ with open('./questions-words-add2.txt', 'r') as f:
 countries = list(cu)
 countries_vec=[model[i] for i in countries]
 
+#bhtsne がインストールできなかったので試せてはない
+
 embedded = bhtsne.tsne(np.array(countries_vec).astype(np.float64), dimensions=2, rand_seed=123)
 plt.figure(figsize=(10, 10))
 plt.scatter(np.array(embedded).T[0], np.array(embedded).T[1])
