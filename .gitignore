@@ -131,3 +131,13 @@ dmypy.json
 #add
 7/GoogleNews-vectors-negative300.bin
 8/NewsAggregatorDataset
+8/checkpoint1.pt
+8/checkpoint2.pt
+8/checkpoint3.pt
+8/checkpoint4.pt
+8/checkpoint5.pt
+8/checkpoint6.pt
+8/checkpoint7.pt
+8/checkpoint8.pt
+8/checkpoint9.pt
+8/checkpoint10.pt
